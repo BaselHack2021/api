@@ -1,0 +1,64 @@
+{
+  "name": "express-typescript-template",
+  "description": "Template for projects using express and Typescript.",
+  "version": "1.0.0",
+  "keywords": [
+    "template",
+    "express",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Michael Beutler",
+    "email": "michael.beutler@iperka.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iperka/express-typescript-template"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^4.1.1",
+    "mongoose": "^6.0.3",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.13",
+    "@types/faker": "^5.5.8",
+    "@types/jest": "^27.0.1",
+    "@types/mongodb": "^4.0.7",
+    "@types/mongoose": "^5.11.97",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^16.7.10",
+    "@types/winston": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "faker": "^5.5.3",
+    "jest": "^27.1.0",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.4.2"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "yarn tsc",
+    "start": "node dist/index.js",
+    "inspect": "nodemon --inspect src/index.ts",
+    "test": "jest --passWithNoTests",
+    "lint": "yarn lint:js ",
+    "lint:eslint": "eslint --ignore-path .gitignore --ext .ts",
+    "lint:js": "yarn lint:eslint src/",
+    "lint:fix": "yarn lint:js --fix"
+  }
+}

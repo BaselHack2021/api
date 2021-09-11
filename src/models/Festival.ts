@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Festival } from '../interfaces/models';
+import { Festival } from '@baselhack2021/interfaces/models';
 
 const schema = new Schema<Festival>({
   name: { type: String, required: true },
@@ -15,11 +15,7 @@ const getAllFestivals = async () => FestivalModel.find();
 
 const createFestival = async (festivalObj: any) => FestivalModel.create(festivalObj);
 
-const updateFestivalByID = async (id: String, festivalObj: any) => FestivalModel.findByIdAndUpdate(id, festivalObj, { new: true });
+const updateFestivalByID = async (id: String, festivalObj: any) =>
+  FestivalModel.findByIdAndUpdate(id, festivalObj, { new: true });
 
-export {
-  getFestivalById,
-  getAllFestivals,
-  createFestival,
-  updateFestivalByID,
-};
+export { getFestivalById, getAllFestivals, createFestival, updateFestivalByID };

@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { User } from '../interfaces/models';
+import { User } from '@baselhack2021/interfaces/models';
 
 const schema = new Schema<User>({
   firstName: { type: String, required: true },

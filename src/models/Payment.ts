@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Payment } from '../interfaces/models';
+import { Payment } from '@baselhack2021/interfaces/models';
 
 const schema = new Schema<Payment>({
   amount: { type: Number, required: true },

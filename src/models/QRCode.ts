@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { QRCode } from '../interfaces/models';
+import { QRCode } from '@baselhack2021/interfaces/models';
 
 const schema = new Schema<QRCode>({
   user: { type: Schema.Types.ObjectId, ref: 'FestivalUser', required: true },

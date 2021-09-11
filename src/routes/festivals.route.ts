@@ -1,16 +1,14 @@
 import express from 'express';
 import { body, ValidationError, validationResult } from 'express-validator';
-import { Festival } from '../interfaces/models';
+import { Festival } from '@baselhack2021/interfaces/models';
 import {
   CreateFestivalResponse,
   GetAllFestivalsResponse,
   GetFestivalByIdRequest,
   GetFestivalByIdResponse,
   UpdateFestivalResponse,
-} from '../interfaces/endpoints';
-import {
-  createFestival, getAllFestivals, getFestivalById, updateFestivalByID,
-} from '../models/Festival';
+} from '@baselhack2021/interfaces/endpoints';
+import { createFestival, getAllFestivals, getFestivalById, updateFestivalByID } from '../models/Festival';
 
 const router = express.Router();
 

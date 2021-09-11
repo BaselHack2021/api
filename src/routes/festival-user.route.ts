@@ -1,8 +1,8 @@
 import express from 'express';
 import { body, ValidationError, validationResult } from 'express-validator';
 import { createFestivaluser, getFestivalUserById } from '../models/FestivalUser';
-import { GetUserByIdRequest, GetUserByIdResponse, RegisterUserResponse } from '../interfaces/endpoints';
-import { FestivalUser } from '../interfaces/models';
+import { GetUserByIdRequest, GetUserByIdResponse, RegisterUserResponse } from '@baselhack2021/interfaces/endpoints';
+import { FestivalUser } from '@baselhack2021/interfaces/models';
 
 const router = express.Router();
 

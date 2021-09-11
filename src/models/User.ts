@@ -22,7 +22,7 @@ const getAllUsers = async () => {
 }
 
 const createUser = async (userObj: any) => {
-  return UserModel.create(userObj, (err: String, user: User) => {
+  return await UserModel.create(userObj, (err: String, user: User) => {
     if (err) {
       return err;
     } else {

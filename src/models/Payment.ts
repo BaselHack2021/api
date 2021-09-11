@@ -12,9 +12,7 @@ const schema = new Schema<Payment>({
 const PaymentModel = model<Payment>('Payment', schema);
 
 const createPayment = async (transactionObj: any) => {
-    return PaymentModel.create(transactionObj, (err: String, payment: Payment) => {
-        return err ? err : payment;
-    })
+    return PaymentModel.create(transactionObj)
 }
 
 export {

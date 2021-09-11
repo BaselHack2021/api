@@ -12,7 +12,7 @@ const schema = new Schema<FestivalUser>({
 const FestivalUserModel = model<FestivalUser>('FestivalUser', schema);
 
 const getFestivalUserById = async (id: String) => {
-    FestivalUserModel.findById(id).populate('user').exec()
+    return FestivalUserModel.findById(id).populate('user').exec()
 }
 
 const createFestivaluser = async (festivalUserObj: any) => {

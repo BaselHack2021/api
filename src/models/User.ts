@@ -26,13 +26,7 @@ const createUser = async (userObj: any) => {
 };
 
 const updateUserById = async (id: String, userObj: any) => {
-  return UserModel.findByIdAndUpdate(id, userObj, { new: true }, (err: any, user: User) => {
-    if (err) {
-      return err;
-    } else {
-      return user;
-    }
-  })
+  return UserModel.findByIdAndUpdate(id, userObj, { new: true })
 }
 
 export { getUserById, getAllUsers, createUser, updateUserById };

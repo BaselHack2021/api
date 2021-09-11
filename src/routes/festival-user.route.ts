@@ -58,8 +58,8 @@ router.post(
     return res.json({
       status: 201,
       data: (await createFestivaluser({
-        userId: req.body.userId,
-        festivalId: req.body.festivalId,
+        user: req.body.userId,
+        festival: req.body.festivalId,
       })) as FestivalUser,
       message: 'Created',
     });

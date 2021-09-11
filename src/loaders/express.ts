@@ -23,4 +23,6 @@ export default async ({ app }: { app: Application }) => {
   app.use('/users', usersRoute);
   app.use('/festivals', festivalRoute);
   app.use('/festival-users', festivalUserRoute);
+
+  app.get('/tea-time', (req: express.Request, res: express.Response) => res.json({ teaTime: '🫖' }));
 };

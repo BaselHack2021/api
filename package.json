@@ -1,20 +1,16 @@
 {
-  "name": "express-typescript-template",
-  "description": "Template for projects using express and Typescript.",
+  "name": "quer-manager-api",
+  "description": "API for QR code based festival management system.",
   "version": "1.0.0",
   "keywords": [
-    "template",
+    "festival",
     "express",
     "typescript"
   ],
   "license": "MIT",
-  "author": {
-    "name": "Michael Beutler",
-    "email": "michael.beutler@iperka.com"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/iperka/express-typescript-template"
+    "url": "https://github.com/BaselHack2021/api"
   },
   "dependencies": {
     "cors": "^2.8.5",

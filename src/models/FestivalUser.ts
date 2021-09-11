@@ -17,6 +17,8 @@ const getFestivalUserById = async (id: String) => FestivalUserModel.findById(id)
 
 const createFestivaluser = async (festivalUserObj: any) => FestivalUserModel.create(festivalUserObj);
 
+// TODO: Method for Update
+
 export {
   getFestivalUserById,
   createFestivaluser,

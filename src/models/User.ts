@@ -27,4 +27,15 @@ const createUser = async (userObj: any) => {
   });
 };
 
-export { getUserById, createUser };
+const updateUserById = async (id: String, userObj: any) => {
+  return UserModel.findByIdAndUpdate(id, userObj, { new: true }, (err: String, user: User) => {
+    if (err) {
+      return err;
+    } else {
+      return user;
+    }
+  })
+}
+
+export { getUserById, createUser, updateUserById };
+

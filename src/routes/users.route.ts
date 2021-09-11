@@ -1,14 +1,16 @@
 import express from 'express';
 import { body, ValidationError, validationResult } from 'express-validator';
-import { User } from '../interfaces/models';
 import {
   GetAllUsersResponse,
   GetUserByIdRequest,
   GetUserByIdResponse,
   RegisterUserResponse,
-  UpdateUserRequestResponse,
+  UpdateUserResponse,
 } from '../interfaces/endpoints';
-import { createUser, getAllUsers, getUserById, updateUserById } from '../models/User';
+import { User } from '../interfaces/models';
+import {
+  createUser, getAllUsers, getUserById, updateUserById,
+} from '../models/User';
 
 const router = express.Router();
 
@@ -28,7 +30,7 @@ router.get('/:id', async (req: express.Request & { params: GetUserByIdRequest },
   let resObj: GetUserByIdResponse = {
     status: 404,
     data: null,
-    message: 'Not implemented yet.',
+    message: 'Not Found.',
   };
 
   const user = await getUserById(userId);
@@ -102,10 +104,10 @@ router.put(
   async (req: express.Request, res: express.Response) => {
     const userId: string = req.params.id;
 
-    let resObj: UpdateUserRequestResponse = {
+    let resObj: UpdateUserResponse = {
       status: 404,
       data: null,
-      message: 'Not implemented yet.',
+      message: 'Not Found.',
     };
 
     const errors = validationResult(req);
@@ -116,7 +118,7 @@ router.put(
         message: 'Bad Request',
         errors: errors.array().map((error: ValidationError) => ({
           code: 400,
-          message: `${error.param}: ${error.msg}`,
+          message: `${error.param}: ${error.msg} => ${error.value}`,
         })),
       };
       return res.status(400).json(resObj);

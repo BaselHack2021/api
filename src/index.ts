@@ -16,7 +16,7 @@ export default async function startServer() {
       ################################################
     `);
     })
-    .on('error', err => {
+    .on('error', (err) => {
       Logger.error(err);
       process.exit(1);
     });

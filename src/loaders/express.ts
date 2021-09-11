@@ -2,6 +2,8 @@ import cors from 'cors';
 import express, { Application, Request, Response } from 'express';
 import morgan from 'morgan';
 import usersRoute from '../routes/users.route';
+import festivalRoute from '../routes/festivals.route';
+import festivalUserRoute from '../routes/festival-user.route';
 
 export default async ({ app }: { app: Application }) => {
   app.use(express.json());
@@ -19,4 +21,6 @@ export default async ({ app }: { app: Application }) => {
   app.enable('trust proxy');
 
   app.use('/users', usersRoute);
+  app.use('/festivals', festivalRoute);
+  app.use('/festival-users', festivalUserRoute);
 };

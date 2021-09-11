@@ -7,14 +7,8 @@ const schema = new Schema<QRCode>({
 
 const QRCodeModel = model<QRCode>('QRCode', schema);
 
-<<<<<<< Updated upstream
 const linkQRCode = (qrCodeObject: QRCode) => {
-    QRCodeModel.findByIdAndUpdate(qrCodeObject._id, qrCodeObject, { new: true })
-}
-=======
-const linkQRCode = (qrCodeId: String, userObj: any) => {
-  QRCodeModel.findByIdAndUpdate(qrCodeId, userObj, { new: true });
+  QRCodeModel.findByIdAndUpdate(qrCodeObject._id, qrCodeObject, { new: true });
 };
->>>>>>> Stashed changes
 
 export { linkQRCode };

@@ -17,6 +17,10 @@ const getUserById = async (id: string) => {
   return UserModel.findById(id).exec();
 };
 
+const getAllUsers = async () => {
+  return UserModel.find();
+}
+
 const createUser = async (userObj: any) => {
   return UserModel.create(userObj, (err: String, user: User) => {
     if (err) {
@@ -37,5 +41,4 @@ const updateUserById = async (id: String, userObj: any) => {
   })
 }
 
-export { getUserById, createUser, updateUserById };
-
+export { getUserById, getAllUsers, createUser, updateUserById };

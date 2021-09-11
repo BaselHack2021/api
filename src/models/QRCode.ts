@@ -7,8 +7,8 @@ const schema = new Schema<QRCode>({
 
 const QRCodeModel = model<QRCode>('QRCode', schema);
 
-const linkQRCode = (qrCodeId: String, userObj: any) => {
-    QRCodeModel.findByIdAndUpdate(qrCodeId, userObj, { new: true })
+const linkQRCode = (qrCodeObject: QRCode) => {
+    QRCodeModel.findByIdAndUpdate(qrCodeObject._id, qrCodeObject, { new: true })
 }
 
 export { linkQRCode }

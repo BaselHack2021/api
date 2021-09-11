@@ -1,5 +1,5 @@
 import cors from 'cors';
-import { Application, Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express';
 import morgan from 'morgan';
 import usersRoute from '../routes/users.route';
 
@@ -16,6 +16,7 @@ export default async ({ app }: { app: Application }) => {
 
   app.use('/users', usersRoute);
 
-  app.use(cors());
+  app.use(express.json());
+  app.use(cors({ origin: '*' }));
   app.use(morgan('dev'));
 };

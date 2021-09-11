@@ -1,22 +1,21 @@
 import express from 'express';
-import { body, validationResult, ValidationError } from 'express-validator';
-import { getUserById, createUser } from '../models/User';
+import { body, ValidationError, validationResult } from 'express-validator';
 import {
   GetAllUsersResponse,
   GetUserByIdRequest,
   GetUserByIdResponse,
-  RegisterUserRequest,
   RegisterUserResponse,
 } from '../interfaces/endpoints';
-import { User } from '../interfaces/models';
+import { createUser, getAllUsers, getUserById } from '../models/User';
 
 const router = express.Router();
 
-router.get('/', (req: express.Request, res: express.Response) => {
+router.get('/',async (req: express.Request, res: express.Response) => {
+  const users = await getAllUsers();
   const resObj: GetAllUsersResponse = {
-    status: 404,
-    data: null,
-    message: 'Not Found',
+    status: 200,
+    data: users,
+    message: 'Success',
   };
   return res.json(resObj);
 });
@@ -54,36 +53,38 @@ router.post(
   async (req: express.Request, res: express.Response) => {
     // const { firstName, lastName, gender, birthdate, email, phoneNumber } = req.body;
 
+    console.log(req.query);
     let resObj: RegisterUserResponse = {
       status: 404,
       data: null,
       message: 'Not implemented yet.',
     };
 
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //   resObj = {
-    //     status: 400,
-    //     data: null,
-    //     message: 'Bad Request',
-    //     errors: errors.array().map((error: ValidationError) => ({
-    //       code: 400,
-    //       message: `${error.param}: ${error.msg}`,
-    //     })),
-    //   };
-    //   return res.status(400).json(resObj);
-    // }
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      resObj = {
+        status: 400,
+        data: null,
+        message: 'Bad Request',
+        errors: errors.array().map((error: ValidationError) => ({
+          code: 400,
+          message: `${error.param}: ${error.msg}`,
+        })),
+      };
+      return res.status(400).json(resObj);
+    }
 
-    const u = await createUser({
-      firstName: 'Test',
-      lastName: 'Muster Alpha Mann',
-      birthdate: new Date(),
-      email: 'test@wdawd.ch',
-      gender: true,
-    });
+    // const u = await createUser({
+    //   firstName: 'Test',
+    //   lastName: 'Muster Alpha Mann',
+    //   birthdate: new Date(),
+    //   email: 'test@wdawd.ch',
+    //   gender: true,
+    // });
+
     resObj = {
       status: 201,
-      data: null,
+      data: req.body,
       message: 'Created',
     };
 

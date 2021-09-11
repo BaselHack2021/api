@@ -6,12 +6,12 @@ export interface User {
     email: string;
     phoneNumber?: string;
     festivals: FestivalUser[];
+    status: "unverified" | "verified";
 }
 
 export interface FestivalUser {
     festival: Festival;
     balance: number;
-    payments: Payment[];
     role: Role;
     imageUrl?: string;
 }
@@ -25,11 +25,18 @@ export interface Festival {
 
 export type Role = "visitor" | "employee" | "organisator";
 
+export type PaymentStatus =
+    | "insufficientBalance"
+    | "insufficientAge"
+    | "accepted";
+
 export interface Payment {
     uuid: string;
     amount: number;
     description?: string;
     festival: Festival;
+    festivalUser: FestivalUser;
+    status: PaymentStatus;
 }
 
 export interface QRCode {
@@ -42,9 +49,5 @@ export interface Response<T> {
     status: number;
     message: string;
     data: T;
-    errors?: {
-        code: number;
-        message: string;
-        debug?: string;
-    }[];
+    errors?: { code: number; message: string; debug?: string }[];
 }

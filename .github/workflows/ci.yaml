@@ -24,6 +24,8 @@ jobs:
           node-version: '12.x'
       - name: Install dependencies
         run: yarn
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Running build task
         run: yarn build
       - name: Running tests

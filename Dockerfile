@@ -1,6 +1,8 @@
 #
 # ---- Base Node ----
 FROM node:12-alpine AS base
+ARG NPM_TOKEN  
+
 # install node
 RUN apk add --no-cache nodejs-current tini
 # set working directory
@@ -8,6 +10,7 @@ WORKDIR /app
 # Set tini as entrypoint
 ENTRYPOINT ["/sbin/tini", "--"]
 # copy project file
+COPY .npmrc .npmrc  
 COPY package.json .
  
 #

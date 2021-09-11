@@ -8,3 +8,5 @@ const schema = new Schema<Festival>({
 })
 
 const FestivalModel = model<Festival>('Festival', schema)
+
+// TODO: Implement Festival CRUD stuff

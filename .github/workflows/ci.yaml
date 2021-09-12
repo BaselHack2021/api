@@ -25,10 +25,10 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GPR_READ_TOKEN }}
       - name: Install dependencies
-        run: yarn install
+        run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GPR_READ_TOKEN }}
       - name: Running build task
-        run: yarn build
+        run: npm run build
       - name: Running tests
-        run: yarn test
+        run: npm run test

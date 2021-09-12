@@ -15,13 +15,18 @@ const createTransaction = async (transactionObj: any) => {
   const user = await getFestivalUserById(transactionObj.festivalUser);
   const currentBalance = user.balance;
 
-  if (currentBalance >= amount) {
-    const newBalance = currentBalance + transactionObj.amount;
-    updateFestivalUserById(transactionObj.festivalUser, { balance: newBalance });
-    return PaymentModel.create(transactionObj);
+  if (Math.sign(amount) === -1) {
+    if (currentBalance - (amount * -1) >= 0) {
+      console.log(currentBalance - amount)
+      const newBalance = currentBalance + transactionObj.amount;
+      updateFestivalUserById(transactionObj.festivalUser, { balance: newBalance });
+      return PaymentModel.create(transactionObj);
+    }
+    return 'insufficientBalance';
   }
-
-  return 'insufficientBalance';
+  const newBalance = currentBalance + transactionObj.amount;
+  updateFestivalUserById(transactionObj.festivalUser, { balance: newBalance });
+  return PaymentModel.create(transactionObj);
 };
 
 export {

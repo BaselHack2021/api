@@ -12,7 +12,7 @@ const PaymentModel = model<Payment>('Payment', schema);
 
 const createTransaction = async (transactionObj: any) => {
   const { amount } = transactionObj;
-  const currentBalance = await getFestivalUserById(transactionObj.festivalUser);
+  const currentBalance = await getFestivalUserById(transactionObj.festivalUser).balance;
 
   if (currentBalance >= amount) {
     const newBalance = currentBalance + transactionObj.amount;

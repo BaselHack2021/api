@@ -5,6 +5,7 @@ import usersRoute from '../routes/users.route';
 import festivalRoute from '../routes/festivals.route';
 import festivalUserRoute from '../routes/festival-user.route';
 import qrCodeRoute from '../routes/qr-codes.route';
+import transactionRoute from '../routes/transactions.route';
 
 export default async ({ app }: { app: Application }) => {
   app.use(express.json());
@@ -25,6 +26,7 @@ export default async ({ app }: { app: Application }) => {
   app.use('/festivals', festivalRoute);
   app.use('/festival-users', festivalUserRoute);
   app.use('/qr-codes', qrCodeRoute);
+  app.use('/transactions', transactionRoute);
 
   app.get('/tea-time', (req: express.Request, res: express.Response) => res.status(418).json({ teaTime: '🫖' }));
 };

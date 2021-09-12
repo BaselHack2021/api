@@ -1,6 +1,0 @@
-[submodule "interfaces"]
-	path = interfaces
-	url = https://github.com/BaselHack2021/interfaces
-[submodule "src/interfaces"]
-	path = src/interfaces
-	url = https://github.com/baselhack2021/interfaces

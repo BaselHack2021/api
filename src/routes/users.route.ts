@@ -6,8 +6,8 @@ import {
   GetUserByIdResponse,
   RegisterUserResponse,
   UpdateUserResponse,
-} from '../interfaces/endpoints';
-import { User } from '../interfaces/models';
+} from '@baselhack2021/interfaces/endpoints';
+import { User } from '@baselhack2021/interfaces/models';
 import {
   createUser, getAllUsers, getUserById, updateUserById,
 } from '../models/User';

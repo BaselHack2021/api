@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Payment } from '../interfaces/models';
+import { Payment } from '@baselhack2021/interfaces/models';
 import { getFestivalUserById, updateFestivalUserById } from './FestivalUser';
 
 const schema = new Schema<Payment>({

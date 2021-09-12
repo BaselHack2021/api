@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { FestivalUser } from '../interfaces/models';
+import { FestivalUser } from '@baselhack2021/interfaces/models';
 
 const schema = new Schema<FestivalUser>({
   festival: { type: Schema.Types.ObjectId, ref: 'Festival', required: true },

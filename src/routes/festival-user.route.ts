@@ -1,8 +1,10 @@
-import express from 'express';
-import { body, ValidationError, validationResult } from 'express-validator';
-import { createFestivaluser, getFestivalUserById } from '../models/FestivalUser';
 import { GetUserByIdRequest, GetUserByIdResponse, RegisterUserResponse } from '@baselhack2021/interfaces/endpoints';
 import { FestivalUser } from '@baselhack2021/interfaces/models';
+import express from 'express';
+import { body, validationResult } from 'express-validator';
+import parseValidationErrors from '../helpers/parse-validation-error';
+import { version } from '../../package.json';
+import { createFestivaluser, getFestivalUserById } from '../models/FestivalUser';
 
 const router = express.Router();
 
@@ -13,6 +15,7 @@ router.get('/:id', async (req: express.Request & { params: GetUserByIdRequest },
     status: 404,
     data: null,
     message: 'Not Found.',
+    version,
   };
 
   const user = await getFestivalUserById(userId);
@@ -21,6 +24,7 @@ router.get('/:id', async (req: express.Request & { params: GetUserByIdRequest },
       status: 200,
       data: user as any, // todo set type
       message: 'Success',
+      version,
     };
     return res.json(resObj);
   }
@@ -39,6 +43,7 @@ router.post(
       status: 404,
       data: null,
       message: 'Not implemented yet.',
+      version,
     };
 
     const errors = validationResult(req);
@@ -47,10 +52,8 @@ router.post(
         status: 400,
         data: null,
         message: 'Bad Request',
-        errors: errors.array().map((error: ValidationError) => ({
-          code: 400,
-          message: `${error.param}: ${error.msg}`,
-        })),
+        errors: parseValidationErrors(errors),
+        version,
       };
       return res.status(400).json(resObj);
     }
@@ -62,6 +65,7 @@ router.post(
         festival: req.body.festivalId,
       })) as FestivalUser,
       message: 'Created',
+      version,
     });
   },
 );

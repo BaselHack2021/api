@@ -1,5 +1,3 @@
-import express from 'express';
-import { body, ValidationError, validationResult } from 'express-validator';
 import {
   GetAllUsersResponse,
   GetUserByIdRequest,
@@ -8,9 +6,11 @@ import {
   UpdateUserResponse,
 } from '@baselhack2021/interfaces/endpoints';
 import { User } from '@baselhack2021/interfaces/models';
-import {
-  createUser, getAllUsers, getUserById, updateUserById,
-} from '../models/User';
+import express from 'express';
+import { body, validationResult } from 'express-validator';
+import parseValidationErrors from '../helpers/parse-validation-error';
+import { version } from '../../package.json';
+import { createUser, getAllUsers, getUserById, updateUserById } from '../models/User';
 
 const router = express.Router();
 
@@ -20,6 +20,7 @@ router.get('/', async (req: express.Request, res: express.Response) => {
     status: 200,
     data: users,
     message: 'Success',
+    version,
   };
   return res.json(resObj);
 });
@@ -31,6 +32,7 @@ router.get('/:id', async (req: express.Request & { params: GetUserByIdRequest },
     status: 404,
     data: null,
     message: 'Not Found.',
+    version,
   };
 
   const user = await getUserById(userId);
@@ -39,6 +41,7 @@ router.get('/:id', async (req: express.Request & { params: GetUserByIdRequest },
       status: 200,
       data: user,
       message: 'Success',
+      version,
     };
     return res.json(resObj);
   }
@@ -61,6 +64,7 @@ router.post(
       status: 404,
       data: null,
       message: 'Not implemented yet.',
+      version,
     };
 
     const errors = validationResult(req);
@@ -69,10 +73,8 @@ router.post(
         status: 400,
         data: null,
         message: 'Bad Request',
-        errors: errors.array().map((error: ValidationError) => ({
-          code: 400,
-          message: `${error.param}: ${error.msg}`,
-        })),
+        errors: parseValidationErrors(errors),
+        version,
       };
       return res.status(400).json(resObj);
     }
@@ -88,6 +90,7 @@ router.post(
         phoneNumber: req.body.phoneNumber,
       })) as User,
       message: 'Created',
+      version,
     });
   },
 );
@@ -108,6 +111,7 @@ router.put(
       status: 404,
       data: null,
       message: 'Not Found.',
+      version,
     };
 
     const errors = validationResult(req);
@@ -116,10 +120,8 @@ router.put(
         status: 400,
         data: null,
         message: 'Bad Request',
-        errors: errors.array().map((error: ValidationError) => ({
-          code: 400,
-          message: `${error.param}: ${error.msg} => ${error.value}`,
-        })),
+        errors: parseValidationErrors(errors),
+        version,
       };
       return res.status(400).json(resObj);
     }
@@ -136,6 +138,7 @@ router.put(
         status: req.body.status ? 'verified' : 'unverified',
       })) as User,
       message: 'Updated',
+      version,
     });
   },
 );

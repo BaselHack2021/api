@@ -1,5 +1,5 @@
 import express from 'express';
-import { body, ValidationError, validationResult } from 'express-validator';
+import { body, validationResult } from 'express-validator';
 import { Festival } from '@baselhack2021/interfaces/models';
 import {
   CreateFestivalResponse,
@@ -9,6 +9,8 @@ import {
   UpdateFestivalResponse,
 } from '@baselhack2021/interfaces/endpoints';
 import { createFestival, getAllFestivals, getFestivalById, updateFestivalByID } from '../models/Festival';
+import { version } from '../../package.json';
+import parseValidationErrors from '../helpers/parse-validation-error';
 
 const router = express.Router();
 
@@ -18,6 +20,7 @@ router.get('/', async (req: express.Request, res: express.Response) => {
     status: 200,
     data: festivals,
     message: 'Success',
+    version,
   };
   return res.json(resObj);
 });
@@ -29,6 +32,7 @@ router.get('/:id', async (req: express.Request & { params: GetFestivalByIdReques
     status: 404,
     data: null,
     message: 'Not implemented yet.',
+    version,
   };
 
   const festival = await getFestivalById(festivalId);
@@ -37,6 +41,7 @@ router.get('/:id', async (req: express.Request & { params: GetFestivalByIdReques
       status: 200,
       data: festival,
       message: 'Success',
+      version,
     };
     return res.json(resObj);
   }
@@ -56,6 +61,7 @@ router.post(
       status: 404,
       data: null,
       message: 'Not Found.',
+      version,
     };
 
     const errors = validationResult(req);
@@ -64,10 +70,8 @@ router.post(
         status: 400,
         data: null,
         message: 'Bad Request',
-        errors: errors.array().map((error: ValidationError) => ({
-          code: 400,
-          message: `${error.param}: ${error.msg}`,
-        })),
+        errors: parseValidationErrors(errors),
+        version,
       };
       return res.status(400).json(resObj);
     }
@@ -80,6 +84,7 @@ router.post(
         location: req.body.location,
       })) as Festival,
       message: 'Created',
+      version,
     });
   },
 );
@@ -96,6 +101,7 @@ router.put(
       status: 404,
       data: null,
       message: 'Not Found.',
+      version,
     };
 
     const errors = validationResult(req);
@@ -104,10 +110,8 @@ router.put(
         status: 400,
         data: null,
         message: 'Bad Request',
-        errors: errors.array().map((error: ValidationError) => ({
-          code: 400,
-          message: `${error.param}: ${error.msg} => ${error.value}`,
-        })),
+        errors: parseValidationErrors(errors),
+        version,
       };
       return res.status(400).json(resObj);
     }
@@ -120,6 +124,7 @@ router.put(
         location: req.body.location,
       })) as Festival,
       message: 'Updated',
+      version,
     });
   },
 );

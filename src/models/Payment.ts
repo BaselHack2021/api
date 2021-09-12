@@ -14,7 +14,7 @@ const PaymentModel = model<Payment>('Payment', schema);
 
 const createTransaction = async (transactionObj: any) => {
   const { amount } = transactionObj;
-  const currentBalance = await getFestivalUserById(transactionObj.festivalUser).execute();
+  const currentBalance = await getFestivalUserById(transactionObj.festivalUser);
 
   if (currentBalance >= amount) {
     const newBalance = currentBalance + transactionObj.amount;
@@ -23,14 +23,8 @@ const createTransaction = async (transactionObj: any) => {
   }
 
   return 'insufficientBalance';
-
 };
-
-const getTransactionsOfUserById = async (userId: String) => {
-  PaymentModel.find({ festivalUser: userId }).exec();
-}
 
 export {
   createTransaction,
-  getTransactionsOfUserById,
 };

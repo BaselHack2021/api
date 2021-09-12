@@ -11,7 +11,8 @@ WORKDIR /app
 # Set tini as entrypoint
 ENTRYPOINT ["/sbin/tini", "--"]
 # copy project file
-RUN echo "//npm.pkg.github.com/:_authToken=${github_token}" > .npmrc
+RUN echo "@baselhack2021:registry=https://npm.pkg.github.com" > .npmrc
+RUN echo "//npm.pkg.github.com/:_authToken=${github_token}" >> .npmrc
 COPY package.json .
 
 #

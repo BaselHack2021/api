@@ -13,7 +13,7 @@
     "url": "https://github.com/BaselHack2021/api"
   },
   "dependencies": {
-    "@baselhack2021/interfaces": "1.0.1",
+    "@baselhack2021/interfaces": "^1.0.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",

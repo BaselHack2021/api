@@ -20,14 +20,13 @@ RUN npm install --production
 RUN cp -R node_modules prod_node_modules
 # install ALL node_modules, including 'devDependencies'
 RUN npm install
-RUN rm -f .npmrc
 
 #
 # ---- Test ----
 # run linters, setup and tests
 FROM dependencies AS test
 COPY . .
-RUN  yarn lint && yarn test
+RUN  npm run lint && npm run test
 
 #
 # ---- Build ----
@@ -37,7 +36,7 @@ COPY . .
 # copy dev node_modules
 COPY --chown=node:node --from=dependencies /app/node_modules ./node_modules
 # build app
-RUN yarn build
+RUN npm run build
 
 #
 # ---- Release ----
@@ -54,4 +53,4 @@ USER node
 # set env variables
 ENV NODE_ENV=production
 # run app
-CMD yarn start
+CMD npm run start

@@ -1,6 +1,6 @@
 import express from 'express';
 import { createTransaction } from '../models/Payment';
-import { version } from '../../package.json';
+import { version } from '../version';
 
 const router = express.Router();
 

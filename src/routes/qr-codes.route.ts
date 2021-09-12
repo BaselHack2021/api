@@ -1,6 +1,6 @@
 import { GetAllQRCodesResponse, LinkQRCodeRequest, LinkQRCodeResponse } from '@baselhack2021/interfaces/endpoints';
 import express from 'express';
-import { version } from '../../package.json';
+import { version } from '../version';
 import { getAllQRCodes, linkQRCode } from '../models/QRCode';
 
 const router = express.Router();

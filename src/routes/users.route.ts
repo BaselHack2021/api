@@ -9,7 +9,7 @@ import { User } from '@baselhack2021/interfaces/models';
 import express from 'express';
 import { body, validationResult } from 'express-validator';
 import parseValidationErrors from '../helpers/parse-validation-error';
-import { version } from '../../package.json';
+import { version } from '../version';
 import { createUser, getAllUsers, getUserById, updateUserById } from '../models/User';
 
 const router = express.Router();

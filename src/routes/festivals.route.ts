@@ -9,7 +9,7 @@ import {
   UpdateFestivalResponse,
 } from '@baselhack2021/interfaces/endpoints';
 import { createFestival, getAllFestivals, getFestivalById, updateFestivalByID } from '../models/Festival';
-import { version } from '../../package.json';
+import { version } from '../version';
 import parseValidationErrors from '../helpers/parse-validation-error';
 
 const router = express.Router();

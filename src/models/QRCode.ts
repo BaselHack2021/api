@@ -7,9 +7,9 @@ const schema = new Schema<QRCode>({
 
 const QRCodeModel = model<QRCode>('QRCode', schema);
 
-const linkQRCode = (qrCodeObject: QRCode) => {
+const linkQRCode = (qrCodeID: String, qrCodeObject: QRCode) => {
   // eslint-disable-next-line no-underscore-dangle
-  QRCodeModel.findByIdAndUpdate(qrCodeObject._id, qrCodeObject, { new: true });
+  QRCodeModel.findByIdAndUpdate(qrCodeID, qrCodeObject, { new: true });
 };
 
 const getAllQRCodes = () => QRCodeModel.find();

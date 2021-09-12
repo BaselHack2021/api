@@ -18,7 +18,6 @@ export default function parseValidationErrors(errors: Result<ValidationError>): 
   errors.array().forEach((error: ValidationError) => {
     obj[error.param] = {
       message: error.msg,
-      value: error.value,
     };
   });
 

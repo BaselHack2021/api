@@ -1,8 +1,6 @@
 #
 # ---- Base Node ----
 FROM node:12-alpine AS base
-RUN --mount=type=secret,id=github_token \
-    cat /run/secrets/github_token
 
 # install node
 RUN apk add --no-cache nodejs-current tini
@@ -11,19 +9,17 @@ WORKDIR /app
 # Set tini as entrypoint
 ENTRYPOINT ["/sbin/tini", "--"]
 # copy project file
-RUN echo "@baselhack2021:registry=https://npm.pkg.github.com" > .npmrc
-RUN echo "//npm.pkg.github.com/:_authToken=${github_token}" >> .npmrc
 COPY package.json .
 
 #
 # ---- Dependencies ----
 FROM base AS dependencies
 # install node packages
-RUN npm install --production --registry 'https://npm.pkg.github.com'
+RUN npm install --production
 # copy production node_modules aside
 RUN cp -R node_modules prod_node_modules
 # install ALL node_modules, including 'devDependencies'
-RUN npm install --registry 'https://npm.pkg.github.com'
+RUN npm install
 RUN rm -f .npmrc
 
 #

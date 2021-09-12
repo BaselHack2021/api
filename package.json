@@ -1,7 +1,7 @@
 {
   "name": "quer-manager-api",
   "description": "API for QR code based festival management system.",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "keywords": [
     "festival",
     "express",

@@ -1,7 +1,14 @@
-import { GetAllQRCodesResponse, LinkQRCodeRequest, LinkQRCodeResponse } from '@baselhack2021/interfaces/endpoints';
+import {
+  GetAllQRCodesResponse,
+  GetQRCodeByIdRequest,
+  GetQRCodeByIdResponse,
+  LinkQRCodeRequest,
+  LinkQRCodeResponse,
+} from '@baselhack2021/interfaces/endpoints';
 import express from 'express';
 import { version } from '../version';
-import { getAllQRCodes, linkQRCode } from '../models/QRCode';
+import { getAllQRCodes, getQRCodeById, linkQRCode } from '../models/QRCode';
+import { QRCode } from '@baselhack2021/interfaces/models';
 
 const router = express.Router();
 
@@ -13,6 +20,30 @@ router.get('/', async (req: express.Request, res: express.Response) => {
     message: 'Success',
     version,
   };
+  return res.json(resObj);
+});
+
+router.get('/:id', async (req: express.Request & { params: GetQRCodeByIdRequest }, res: express.Response) => {
+  const codeId: string = req.params.id;
+
+  let resObj: GetQRCodeByIdResponse = {
+    status: 404,
+    data: null,
+    message: 'Not Found.',
+    version,
+  };
+
+  const code = await getQRCodeById(codeId);
+  if (code) {
+    resObj = {
+      status: 200,
+      data: code as QRCode, // todo set type
+      message: 'Success',
+      version,
+    };
+    return res.json(resObj);
+  }
+
   return res.json(resObj);
 });
 

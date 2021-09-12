@@ -5,16 +5,14 @@ import { getFestivalUserById, updateFestivalUserById } from './FestivalUser';
 const schema = new Schema<Payment>({
   amount: { type: Number, required: true },
   description: String,
-  festival: { type: Schema.Types.ObjectId, ref: 'Festival' },
   festivalUser: { type: Schema.Types.ObjectId, ref: 'Festivaluser', required: true },
-  status: { type: String, enum: ['insufficientBalance', 'insufficientAge', 'accepted'], required: true },
 });
 
 const PaymentModel = model<Payment>('Payment', schema);
 
 const createTransaction = async (transactionObj: any) => {
   const { amount } = transactionObj;
-  const currentBalance = await getFestivalUserById(transactionObj.festivalUser);
+  const currentBalance = await getFestivalUserById(transactionObj.festivalUser).balance;
 
   if (currentBalance >= amount) {
     const newBalance = currentBalance + transactionObj.amount;

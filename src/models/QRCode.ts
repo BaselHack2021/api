@@ -11,7 +11,8 @@ const getQRCodeById = (id: String) => QRCodeModel.findById(id, null).exec();
 
 const linkQRCode = (qrCodeID: String, qrCodeObject: QRCode) => {
   // eslint-disable-next-line no-underscore-dangle
-  QRCodeModel.findByIdAndUpdate(qrCodeID, qrCodeObject, { new: true });
+  console.log("Linking");
+  QRCodeModel.findByIdAndUpdate(qrCodeID, qrCodeObject, { new: true }, (err) => console.log(err));
 };
 
 const getAllQRCodes = () => QRCodeModel.find().populate('user');

@@ -18,11 +18,11 @@ COPY package.json .
 # ---- Dependencies ----
 FROM base AS dependencies
 # install node packages
-RUN npm install --production --registry='https://npm.pkg.github.com'
+RUN npm install --production
 # copy production node_modules aside
 RUN cp -R node_modules prod_node_modules
 # install ALL node_modules, including 'devDependencies'
-RUN npm install --registry='https://npm.pkg.github.com'
+RUN npm install
 RUN rm -f .npmrc
 
 #

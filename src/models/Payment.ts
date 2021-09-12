@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { Payment } from '../interfaces/models';
+import { getFestivalUserById, updateFestivalUserById } from './FestivalUser';
 
 const schema = new Schema<Payment>({
   amount: { type: Number, required: true },
@@ -11,10 +12,25 @@ const schema = new Schema<Payment>({
 
 const PaymentModel = model<Payment>('Payment', schema);
 
-const createPayment = async (transactionObj: any) => PaymentModel.create(transactionObj);
+const createTransaction = async (transactionObj: any) => {
+  const { amount } = transactionObj;
+  const currentBalance = await getFestivalUserById(transactionObj.festivalUser).execute();
 
-// TODO: Update Saldo of Festival User
+  if (currentBalance >= amount) {
+    const newBalance = currentBalance + transactionObj.amount;
+    await updateFestivalUserById(transactionObj.festivalUser, { balance: newBalance });
+    return PaymentModel.create(transactionObj);
+  }
+
+  return 'insufficientBalance';
+
+};
+
+const getTransactionsOfUserById = async (userId: String) => {
+  PaymentModel.find({ festivalUser: userId }).exec();
+}
 
 export {
-  createPayment,
+  createTransaction,
+  getTransactionsOfUserById,
 };

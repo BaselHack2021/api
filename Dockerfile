@@ -1,7 +1,7 @@
 #
 # ---- Base Node ----
 FROM node:12-alpine AS base
-RUN --mount=type=secret,id=GITHUB_TOKEN \
+RUN --mount=type=secret,id=github_token \
     cat /run/secrets/github_token
 
 # install node
@@ -11,7 +11,7 @@ WORKDIR /app
 # Set tini as entrypoint
 ENTRYPOINT ["/sbin/tini", "--"]
 # copy project file
-RUN echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > .npmrc
+RUN echo "//npm.pkg.github.com/:_authToken=${github_token}" > .npmrc
 COPY package.json .
 
 #

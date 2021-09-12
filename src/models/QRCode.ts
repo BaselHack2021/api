@@ -12,6 +12,6 @@ const linkQRCode = (qrCodeID: String, qrCodeObject: QRCode) => {
   QRCodeModel.findByIdAndUpdate(qrCodeID, qrCodeObject, { new: true });
 };
 
-const getAllQRCodes = () => QRCodeModel.find();
+const getAllQRCodes = () => QRCodeModel.find().populate('user');
 
 export { linkQRCode, getAllQRCodes };

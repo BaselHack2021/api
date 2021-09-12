@@ -1,19 +1,15 @@
 {
   "name": "quer-manager-api",
   "description": "API for QR code based festival management system.",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "keywords": [
     "festival",
     "express",
     "typescript"
   ],
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/BaselHack2021/api"
-  },
   "dependencies": {
-    "@baselhack2021/interfaces": "^1.0.7",
+    "@baselhack2021/interfaces": "^1.0.9",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",

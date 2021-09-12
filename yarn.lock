@@ -304,10 +304,10 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
-"@baselhack2021/interfaces@^1.0.7":
-  version "1.0.7"
-  resolved "https://npm.pkg.github.com/download/@baselhack2021/interfaces/1.0.7/bd7f84b74fedcf1cd05b03e26fa02214f274d14eab2671e62706a066cac36b30#875ad7919f5d67c4dbc39c1b87a461e995bc2fc3"
-  integrity sha512-QpoM9Wpat8B4BL7UvBN/5qTzEDqhG/+8eaWoClqufkz1vvskeXxGMak/8b7JGjH1DdwtFJWO5Pgo53Jw8iz6og==
+"@baselhack2021/interfaces@^1.0.9":
+  version "1.0.9"
+  resolved "https://npm.pkg.github.com/download/@baselhack2021/interfaces/1.0.9/ba8c2489ffc3f58a717c9cd5675d29b824e5b7e4cf410a92aec3c8fe112d63d5#9aa252de7d886bb30e954fc0478bff2d239272f9"
+  integrity sha512-MP4WR5Of5EGuLRa3X9HcifPFX8r8ZXzUHZtsdNxSeYnAnfzkwxRl5Ir2oVxC1VEeBQoiG/DsaiJPBdx0SpUxuw==
 
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"

@@ -17,9 +17,13 @@ const getFestivalUserById = async (id: String) => FestivalUserModel.findById(id)
 
 const createFestivaluser = async (festivalUserObj: any) => FestivalUserModel.create(festivalUserObj);
 
-// TODO: Method for Update
+const updateFestivalUserById = async (festivalUserId: String, festivalUserObj: any) => {
+  // eslint-disable-next-line no-underscore-dangle
+  FestivalUserModel.findByIdAndUpdate(festivalUserId, festivalUserObj, { new: true });
+};
 
 export {
   getFestivalUserById,
   createFestivaluser,
+  updateFestivalUserById,
 };

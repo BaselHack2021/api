@@ -20,10 +20,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12.x'
+          scope: '@baselhack2021'
+          registry-url: "https://npm.pkg.github.com"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GPR_READ_TOKEN }}
       - name: Install dependencies
-        run: yarn
+        run: yarn Install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GPR_READ_TOKEN }}
       - name: Running build task
         run: yarn build
       - name: Running tests

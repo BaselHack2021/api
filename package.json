@@ -12,7 +12,7 @@
     "@baselhack2021/interfaces": "^1.0.9",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-validator": "^6.12.1",
     "mongodb": "^4.1.1",
     "mongoose": "^6.0.3",
